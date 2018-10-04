@@ -1,0 +1,41 @@
+.app {
+  height: 100vh;
+}
+
+.container {
+  font-size: 1em;
+  height: 100vh;
+
+  background: #e3e3e3;
+  display: grid;
+  grid-template-columns: 1.2fr 2.4fr;
+  grid-template-rows: 1.1fr 3.00fr 9.9fr;
+  grid-gap: 1px;
+  grid-template-areas:
+    "menu menu"
+    "search search"
+    "list details";
+}
+
+.item1,
+.item2,
+.item3,
+.item4 {
+  background:#ffffff;
+}
+
+.item1 {
+  grid-area: menu;
+}
+
+.item2 {
+  grid-area: search;
+}
+
+.item3 {
+  grid-area: list
+}
+
+.item4{
+  grid-area: details
+}

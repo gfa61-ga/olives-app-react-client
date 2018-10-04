@@ -1,0 +1,15 @@
+.supplier {
+  display: flex;
+  flex-wrap: wrap;
+  white-space: nowrap;
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #e3e3e3;
+}
+
+.supplier > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 5px;
+}
+
