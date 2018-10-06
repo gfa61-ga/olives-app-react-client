@@ -3,7 +3,7 @@
 }
 
 .container {
-  font-size: 1em;
+  font-size: 1.0em;
   height: 100vh;
 
   background: #e3e3e3;
@@ -17,25 +17,25 @@
     "list details";
 }
 
-.item1,
-.item2,
-.item3,
-.item4 {
+.menu,
+.search,
+.list,
+.details {
   background:#ffffff;
 }
 
-.item1 {
+.menu {
   grid-area: menu;
 }
 
-.item2 {
+.search {
   grid-area: search;
 }
 
-.item3 {
+.list {
   grid-area: list
 }
 
-.item4{
+.details{
   grid-area: details
 }

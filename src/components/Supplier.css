@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   white-space: nowrap;
-  padding: 10px;
+  padding: 5px;
   background: #ffffff;
   border: 1px solid #e3e3e3;
 }
@@ -11,5 +11,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0 5px;
+}
+
+.supplier:focus {
+  background-color: #1f7bad;
+  color: #fff;
 }
 

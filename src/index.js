@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
+import './../node_modules/bulma/css/bulma.css';
 //import registerServiceWorker from './registerServiceWorker';
+import { Provider } from 'react-redux';
+import store from './store';
 
 const suppliers = [
   {
@@ -123,15 +126,17 @@ const filters = [
 ];
 
 ReactDOM.render(
-  <App
-    suppliers={suppliers}
-    products={products}
-    priceLists={priceLists}
-    productPrices={productPrices}
-    pickups={pickups}
-    pickupDetails={pickupDetails}
-    invoices={invoices}
-    filters={filters}
-  />,
+  <Provider store={store}>
+    <App
+      suppliers={suppliers}
+      products={products}
+      priceLists={priceLists}
+      productPrices={productPrices}
+      pickups={pickups}
+      pickupDetails={pickupDetails}
+      invoices={invoices}
+      filters={filters}
+    />
+  </Provider>,
   document.getElementById('root'));
 //registerServiceWorker();

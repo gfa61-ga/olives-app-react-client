@@ -1,0 +1,16 @@
+.input-item {
+  padding: 15px 5px 0 5px;
+  font-size: 0.8em;
+}
+
+.input-item input {
+  padding-left: 5px;
+}
+
+.form-buttons {
+  padding: 15px 0 0;
+}
+
+.form-buttons button {
+  margin: 0 5px 15px;
+}
