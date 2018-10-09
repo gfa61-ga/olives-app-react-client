@@ -2,77 +2,80 @@ import React from 'react';
 import './SupplierForm.css';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { doSupplierSelect } from '../actions/suppliers';
+import { doSupplierUpdate } from '../actions/suppliers';
+
+let supplier = {};
+const submit = (values) => {
+//  window.alert(`Data submitted for update or for new Supplier:\n${JSON.stringify(values, null, 2)}`)
+  supplier = values;
+}
 
 class SupplierForm extends React.Component {
 
-/*
-  state = {
-    form: {
-      lastName: this.props.supplier.lastName,
-      firstName: this.props.supplier.firstName
-    }
-  };
-
-  onChangeLastName = (event) => {
-    const { value } = event.target;
-    this.setState({
-      form: {firstName: this.state.form.firstName, lastName: value}
-    });
-  }
-
-  onChangeFirstName = (event) => {
-    const { value } = event.target;
-    this.setState({
-      form: {lastName: this.state.form.lastName, firstName: value}
-    });
-  }
-*/
-
   onSubmit = (event) => {
-//  const { form } = this.state;
-    // do something with the search value
-    // e.g. propagate it up to the parent component
-//  console.log(form);
     console.log(this.props.storeState);
     event.preventDefault();
   }
 
+  onCreateNewSupplier = (event) => {
+    event.preventDefault();
+    window.alert('You submitted new supplier:');
+    this.props.handleSubmit();
+  }
+
+  onUpdateSupplier = (event) => {
+    this.props.updateSupplier(this.props.values);
+    event.preventDefault();
+  }
+
+  LABELS = {
+    lastName: 'Επώνυμο',
+    firstName: 'Ονομα',
+    address: 'Διεύθυνση',
+    taxIdentifNum: 'ΑΦΜ',
+    phoneNumbers: 'Αριθμοί τηλεφώνου (αριθμός1, αριθμός2 ...)',
+    bankAccounts: 'Τραπεζικοί Λογαριασμοί (λογαριασμός1, λογαριασμός2 ...)'
+  };
+
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.props.handleSubmit(this.props.updateSupplier)}>
+        {Object.keys(this.LABELS).map(key =>
+          <div key={key} className="input-item">
+            <label className="label">{this.LABELS[key]}</label>
+            <div>
+              <Field
+                className="input"
+                name={key}
+                type="text"
+                component="input"
+                placeholder={this.LABELS[key]}
+              />
+            </div>
+          </div>
+        )}
 
-        <div className="input-item">
-          <label className="label">Επώνυμο</label>
-          <div>
-            <Field
-              className="input"
-commnet={""/*              onChange={this.onChangeLastName} */}
-              name="lastName"
-              type="text"
-              component="input"
-              placeholder="Επώνυμο"
-            />
-          </div>
-        </div>
-        <div className="input-item">
-          <label className="label">Ονομα</label>
-          <div>
-            <Field
-              className="input"
-comment={""/*}              onChange={this.onChangeFirstName} */}
-              name="firstName"
-              type="text"
-              component="input"
-              placeholder="Ονομα"
-            />
-          </div>
-        </div>
         <div className="form-buttons">
-          <button className="button is-success" type="submit">
-            Υποβολή
+          <button
+            className="button is-success"
+            type="submit"
+          >
+            Αποθήκευση
           </button>
-          <button className="button is-light" type="button">
+          <button
+            className="button is-light"
+            type="button"
+            onClick={this.props.reset}
+          >
             Eπαναφορά
+          </button>
+          <button
+            className="button is-success is-pulled-right"
+            type="button"
+            onClick={() => {this.props.selectFirstSupplier('')}}
+          >
+            Προσθήκη Πελάτη
           </button>
         </div>
       </form>
@@ -86,9 +89,17 @@ const mapStateToProps = state => (
   }
 );
 
+const mapDispatchToProps = dispatch => ({
+  selectFirstSupplier: (id) => dispatch(doSupplierSelect(id)),
+  updateSupplier: (updatedSupplierEntity) => dispatch(doSupplierUpdate(updatedSupplierEntity))
+});
+
 export default connect(
-    mapStateToProps)(
+    mapStateToProps,
+    mapDispatchToProps)(
   reduxForm({
-    form: 'supplier' // a unique identifier for this form
+    form: 'supplier', // a unique identifier for this form
+    enableReinitialize: true,
+    onSubmit: submit
   })(SupplierForm)
 );

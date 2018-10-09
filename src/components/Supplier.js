@@ -1,26 +1,32 @@
 import React from 'react';
 import './Supplier.css';
+import { connect } from 'react-redux';
+import { doSupplierSelect } from '../actions/suppliers';
 
-const Supplier = ({ supplier }) => {
+const Supplier = ({ supplier, selectSupplier, selectedSupplierId}) => {
   const {
+    _id,
     lastName,
     firstName,
-/*  address,
-    taxIdentifNum,
-    phoneNumbers,
-    bankAccounts */
   } = supplier;
 
   return (
-    <div className="supplier" tabIndex="0">
+    <div
+      className={'supplier ' + (_id === selectedSupplierId ? 'selected' : '')}
+      tabIndex="0"
+      onClick={() => selectSupplier(_id)}
+    >
       <span>{lastName}</span>
       <span>{firstName}</span>
-{/*    <span>{address}</span>
-      <span>{taxIdentifNum}</span>
-      <span>{phoneNumbers[0]}</span>
-      <span>{bankAccounts[0]}</span> */}
     </div>
   );
 }
 
-export default Supplier;
+const mapDispatchToProps = dispatch => ({
+  selectSupplier: _id => dispatch(doSupplierSelect(_id)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Supplier);

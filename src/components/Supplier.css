@@ -13,7 +13,7 @@
   padding: 0 5px;
 }
 
-.supplier:focus {
+.supplier.selected {
   background-color: #1f7bad;
   color: #fff;
 }

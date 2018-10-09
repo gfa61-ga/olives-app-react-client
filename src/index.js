@@ -15,10 +15,12 @@ const suppliers = [
     "address": "ΕΥΗΝΟΧΩΡΙ",
     "taxIdentifNum": "030801152",
     "phoneNumbers": [
-      "6973343647"
+      "6973343647",
+      "6973343648"
     ],
     "bankAccounts": [
-      "ΕΤΕ 412/755600-47"
+      "ΕΤΕ 412/755600-47",
+      "ΠΕΙΡ 412/755600-48"
     ],
     "pickupsIds": [
       "5bafc3660ddd6421e89fd4ee",
@@ -34,7 +36,7 @@ const suppliers = [
     "lastName": "ΝΙΚΟΛΑΟΥ",
     "firstName": "ΣΠΥΡΟΣ Τ. ΔΙΟΝ.",
     "address": "",
-    "taxIndentifNum": "135952259",
+    "taxIdentifNum": "135952259",
     "phoneNumbers": [],
     "bankAccounts": [],
     "pickupsIds": [
@@ -128,7 +130,6 @@ const filters = [
 ReactDOM.render(
   <Provider store={store}>
     <App
-      suppliers={suppliers}
       products={products}
       priceLists={priceLists}
       productPrices={productPrices}
