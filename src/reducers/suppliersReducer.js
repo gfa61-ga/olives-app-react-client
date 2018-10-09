@@ -58,8 +58,8 @@ const INITIAL_SUPPLIERS_STATE = {
 };
 
 const applyUpdateSupplier = (state, action) => ({
-  entities: {...state.entities, [action.updatedSupplierEntity._id]: action.updatedSupplierEntity},
-  ids: [...state.ids]
+  entities: {...state.entities, [action.updatedSupplierEntity._id ? action.updatedSupplierEntity._id : 1]: {...action.updatedSupplierEntity, _id: action.updatedSupplierEntity._id ? action.updatedSupplierEntity._id : 1}},
+  ids: [...state.ids, action.updatedSupplierEntity._id ? action.updatedSupplierEntity._id : 1]
 });
 
 function suppliersReducer(state = INITIAL_SUPPLIERS_STATE, action) {
