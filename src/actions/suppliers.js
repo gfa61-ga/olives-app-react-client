@@ -1,6 +1,7 @@
 import {
   SUPPLIER_SELECT,
-  SUPPLIER_FETCH,
+  SUPPLIERS_FETCH,
+  SUPPLIERS_ADD_TO_STATE,
   SUPPLIER_ADD,
   SUPPLIER_UPDATE
 } from '../constants/actionTypes';
@@ -15,8 +16,19 @@ const doSupplierUpdate = updatedSupplierEntity => ({
   updatedSupplierEntity,
 });
 
+const doAddSuppliers = suppliers => ({
+  type: SUPPLIERS_ADD_TO_STATE,
+  suppliers,
+});
+
+const doFetchSuppliers = query => ({
+  type: SUPPLIERS_FETCH,
+  query,
+});
 
 export {
   doSupplierSelect,
-  doSupplierUpdate
+  doSupplierUpdate,
+  doAddSuppliers,
+  doFetchSuppliers
 };

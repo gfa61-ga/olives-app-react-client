@@ -64,8 +64,8 @@ class SupplierForm extends React.Component {
   };
 
   LABELS_OF_ARRAYS = {
-    phoneNumbers: 'Αριθμοί τηλεφώνου (αριθμός1, αριθμός2 ...)',
-    bankAccounts: 'Τραπεζικοί Λογαριασμοί (λογαριασμός1, λογαριασμός2 ...)'
+    phoneNumbers: 'Αριθμοί τηλεφώνου',
+    bankAccounts: 'Τραπεζικοί Λογαριασμοί'
   };
 
   render() {
@@ -108,7 +108,7 @@ class SupplierForm extends React.Component {
             type="button"
             onClick={this.props.reset}
           >
-            Eπαναφορά
+            Ακύρωση Αλλαγών
           </button>
           <button
             className="button is-success is-pulled-right"
