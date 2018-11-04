@@ -63,12 +63,20 @@ const INITIAL_SUPPLIERS_STATE = {
 
 const applyUpdateSupplier = (state, action) => (
   state.ids.filter((id) => id===action.updatedSupplierEntity._id).length === 0
-?  {
-    entities: {...state.entities, [action.updatedSupplierEntity._id ? action.updatedSupplierEntity._id : 1]: {...action.updatedSupplierEntity, _id: action.updatedSupplierEntity._id ? action.updatedSupplierEntity._id : 1}},
+? {
+    entities: {
+      ...state.entities,
+      [action.updatedSupplierEntity._id ? action.updatedSupplierEntity._id : 1]: {...action.updatedSupplierEntity,
+      _id: action.updatedSupplierEntity._id ? action.updatedSupplierEntity._id : 1}
+    },
     ids: [...state.ids, action.updatedSupplierEntity._id ? action.updatedSupplierEntity._id : 1]
   }
-:  {
-    entities: {...state.entities, [action.updatedSupplierEntity._id ? action.updatedSupplierEntity._id : 1]: {...action.updatedSupplierEntity, _id: action.updatedSupplierEntity._id ? action.updatedSupplierEntity._id : 1}},
+: {
+    entities: {
+      ...state.entities,
+      [action.updatedSupplierEntity._id ? action.updatedSupplierEntity._id : 1]: {...action.updatedSupplierEntity,
+      _id: action.updatedSupplierEntity._id ? action.updatedSupplierEntity._id : 1}
+    },
     ids: [...state.ids]
   }
 );
