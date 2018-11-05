@@ -17,7 +17,7 @@ const submit = (values) => {
 const renderFields = ({ fields}) =>
   <ul>
     <li>
-      <button type="button" className="button is-small" onClick={() => fields.push()}>
+      <button type="button" className="button is-small is-light" onClick={() => fields.push()}>
         Προσθήκη
       </button>
     </li>
@@ -32,7 +32,7 @@ const renderFields = ({ fields}) =>
         />
         <button
           type="button"
-          className="button is-small"
+          className="button is-small is-light"
           onClick={() => fields.remove(index)}
         >
           Διαγραφή
