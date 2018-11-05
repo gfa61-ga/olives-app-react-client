@@ -3,7 +3,9 @@ import {
   SUPPLIERS_FETCH,
   SUPPLIERS_ADD_TO_STATE,
   SUPPLIER_ADD,
-  SUPPLIER_UPDATE
+  SUPPLIER_UPDATE,
+  SUPPLIER_PUT_UPDATE,
+  SUPPLIER_POST_ADD
 } from '../constants/actionTypes';
 
 const doSupplierSelect = selectedSupplierId => ({
@@ -26,9 +28,30 @@ const doFetchSuppliers = query => ({
   query,
 });
 
+const doSupplierPutUpdate = updatedSupplierEntity => ({
+  type: SUPPLIER_PUT_UPDATE,
+  updatedSupplierEntity,
+});
+
+const doSupplierPostAdd = newSupplier => ({
+  type: SUPPLIER_POST_ADD,
+  newSupplier,
+});
+
+const doSupplierAdd = (newSupplierId, newSupplier) => ({
+  type: SUPPLIER_ADD,
+  data: {
+    _id: newSupplierId,
+    newSupplier,
+  }
+});
+
 export {
   doSupplierSelect,
   doSupplierUpdate,
   doAddSuppliers,
-  doFetchSuppliers
+  doFetchSuppliers,
+  doSupplierPutUpdate,
+  doSupplierPostAdd,
+  doSupplierAdd
 };

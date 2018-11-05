@@ -7,6 +7,7 @@ import './../node_modules/bulma/css/bulma.css';
 import { Provider } from 'react-redux';
 import store from './store';
 
+/*
 const suppliers = [
   {
     "_id": "5bafad8291962e30f8c37b06",
@@ -45,6 +46,7 @@ const suppliers = [
     "invoicesIds": []
   }
 ];
+*/
 
 const products = [
   {

@@ -19,7 +19,7 @@ class App extends React.Component {
 
 componentDidMount() {
   this.props.onFetchSuppliers('');
-
+/*
   function postData(url = ``, data = {}) {
     // Default options are marked with *
       return fetch(url, {
@@ -38,10 +38,11 @@ componentDidMount() {
       .then(response => response.json()); // parses response to JSON
   }
 
+
   postData(`http://localhost:3500/suppliers/add`, {"_id": Math.floor(Math.random() * Math.floor(9999)), "lastName": "Geo Al"})
     .then(data => window.alert(JSON.stringify(data))) // JSON-string from `response.json()` call
     .catch(error => window.alert('postData error: ' + error));
-
+*/
 }
 
   render() {
@@ -72,10 +73,14 @@ componentDidMount() {
   }
 }
 
+// Add onFetchSuppliers() to App props
 const mapDispatchToProps = (dispatch) => ({
+  // Dispatch SUPPLIERS_FETCH action to state, to fetch suppliers from API server
+  // and store them in state.suppliersState
   onFetchSuppliers: query => dispatch(doFetchSuppliers(query)),
 });
 
+// Add selectedSupplierId and suppliers to App's props
 const mapStateToProps = state => ({
   selectedSupplierId: state.appState.selectedSupplierId,
   suppliers: state.suppliersState

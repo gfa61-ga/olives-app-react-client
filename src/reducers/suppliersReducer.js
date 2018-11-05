@@ -1,6 +1,7 @@
 import {
   SUPPLIER_UPDATE,
-  SUPPLIERS_ADD_TO_STATE
+  SUPPLIERS_ADD_TO_STATE,
+  SUPPLIER_ADD
 } from '../constants/actionTypes';
 
 import { schema, normalize } from 'normalizr';
@@ -89,6 +90,18 @@ const applyAddSuppliersToState = (state, action) => {
   }
 }
 
+// Store normalized suppliers to state.suppliersState
+const applyAddSupplierToState = (state, action) => {
+  return {
+    entities: {
+      ...state.entities,
+      [action.data._id]: {_id: action.data._id, ...action.data.newSupplier
+    }},
+    ids:
+      [...state.ids, action.data._id]
+  }
+}
+
 function suppliersReducer(state = INITIAL_SUPPLIERS_STATE, action) {
   switch(action.type) {
     case SUPPLIER_UPDATE : {
@@ -96,6 +109,9 @@ function suppliersReducer(state = INITIAL_SUPPLIERS_STATE, action) {
     }
     case SUPPLIERS_ADD_TO_STATE : {
       return applyAddSuppliersToState(state, action);
+    }
+    case SUPPLIER_ADD : {
+      return applyAddSupplierToState(state, action);
     }
     default : return state;
   }

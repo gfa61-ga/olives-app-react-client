@@ -1,16 +1,19 @@
 import React from 'react';
 import './SupplierForm.css';
-import { Field, reduxForm, FieldArray } from 'redux-form';
+import { Field, reduxForm, FieldArray, isDirty } from 'redux-form';
 import { connect } from 'react-redux';
 import { doSupplierSelect } from '../actions/suppliers';
-import { doSupplierUpdate } from '../actions/suppliers';
+import { doSupplierPutUpdate } from '../actions/suppliers';
+import { doSupplierPostAdd } from '../actions/suppliers';
 
+/*
 let supplier = {};
+
 const submit = (values) => {
 //  window.alert(`Data submitted for update or for new Supplier:\n${JSON.stringify(values, null, 2)}`)
   supplier = values;
 }
-
+*/
 const renderFields = ({ fields}) =>
   <ul>
     <li>
@@ -41,7 +44,6 @@ const renderFields = ({ fields}) =>
 class SupplierForm extends React.Component {
 
   onSubmit = (event) => {
-    console.log(this.props.storeState);
     event.preventDefault();
   }
 
@@ -68,9 +70,13 @@ class SupplierForm extends React.Component {
     bankAccounts: 'Τραπεζικοί Λογαριασμοί'
   };
 
-  render() {
+  render() { // TO FIND OUT: handleSubmit calls updateSupplier(), passing form.values as parameter
     return (
-      <form onSubmit={this.props.handleSubmit(this.props.updateSupplier)}>
+      <form onSubmit={
+        this.props.storeState.appState.selectedSupplierId !== '' ?
+        this.props.handleSubmit(this.props.updateSupplier) :
+        this.props.handleSubmit(this.props.addSupplier)
+      }>
 
         {Object.keys(this.LABELS).map(key =>
           <div key={key} className="input-item">
@@ -98,6 +104,7 @@ class SupplierForm extends React.Component {
 
         <div className="form-buttons">
           <button
+            disabled={!this.props.dirty}
             className="button is-success"
             type="submit"
           >
@@ -113,7 +120,9 @@ class SupplierForm extends React.Component {
           <button
             className="button is-success is-pulled-right"
             type="button"
-            onClick={() => {this.props.selectFirstSupplier('')}}
+            onClick={() => {
+              this.props.selectFirstSupplier('');
+            }}
           >
             Προσθήκη Πελάτη
           </button>
@@ -125,13 +134,15 @@ class SupplierForm extends React.Component {
 
 const mapStateToProps = state => (
   {
+    dirty: isDirty('supplier')(state),
     storeState: state
   }
 );
 
 const mapDispatchToProps = dispatch => ({
   selectFirstSupplier: (id) => dispatch(doSupplierSelect(id)),
-  updateSupplier: (updatedSupplierEntity) => dispatch(doSupplierUpdate(updatedSupplierEntity))
+  updateSupplier: (updatedSupplierEntity) => dispatch(doSupplierPutUpdate(updatedSupplierEntity)),
+  addSupplier: (newSupplier) => dispatch(doSupplierPostAdd(newSupplier)),
 });
 
 export default connect(
@@ -140,6 +151,6 @@ export default connect(
   reduxForm({
     form: 'supplier', // a unique identifier for this form
     enableReinitialize: true,
-    onSubmit: submit
+    onSubmit: this.onSubmit
   })(SupplierForm)
 );
