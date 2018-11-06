@@ -18,8 +18,10 @@ function* handleSupplierPutUpdate(action) {
   const { updatedSupplierEntity } = action;
 
   try {
-    yield call(updateSupplier, updatedSupplierEntity);
-    yield put(doSupplierUpdate(updatedSupplierEntity));
+    const result = yield call(updateSupplier, updatedSupplierEntity);
+    if (result.n === 1) {
+      yield put(doSupplierUpdate(updatedSupplierEntity));
+    }
   } catch (error) {
     //yield put(doSupplierUpdate(error));
   }
@@ -30,7 +32,9 @@ function* handleSupplierPostAdd(action) {
 
   try {
     const result = yield call(addSupplier, newSupplier);
-    yield put(doSupplierAdd(result._id, newSupplier));
+    if (result.n === 1) {
+      yield put(doSupplierAdd(result._id, newSupplier));
+    }
   } catch (error) {
     //yield put(doSupplierAdd(error));
   }
