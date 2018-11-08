@@ -3,7 +3,8 @@ import io from 'socket.io-client';
 import {eventChannel} from 'redux-saga';
 import { doSupplierAdd, doSupplierUpdate } from '../actions/suppliers';
 
-const socketServerURL = 'http://localhost:3200'; // socket.io real-time server
+// const socketServerURL = 'http://localhost:3200'; // socket.io real-time server
+const socketServerURL = 'https://olives-app.herokuapp.com';
 
 // wrapping functions for socket events (connect, disconnect, reconnect)
 let socket;
