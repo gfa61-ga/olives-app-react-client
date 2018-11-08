@@ -1,3 +1,5 @@
+/****** uncomment line 3 or line 6 *******/
+
 const HN_BASE_URL = 'https://olives-app.herokuapp.com/suppliers/'
 
 // To run API server in localhost:
