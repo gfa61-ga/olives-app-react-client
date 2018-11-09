@@ -2,8 +2,8 @@
 
 const HN_BASE_URL = 'https://olives-app.herokuapp.com/suppliers/'
 
-// To run API server in localhost:
-// const HN_BASE_URL = 'http://localhost:3500/suppliers/';
+// To fetch data from express api-server in localhost:
+// const HN_BASE_URL = 'http://localhost:3200/suppliers/';
 
 const fetchSuppliers = query =>
   fetch(HN_BASE_URL)
